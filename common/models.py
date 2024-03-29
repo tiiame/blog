@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -73,5 +73,15 @@ class Portfolio(BaseModel):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     complated_at = models.DateField()
 
+    def __str__(self) -> str:
+        return self.title
+
+class Blog(models.Model):
+    author = models.ForeignKey(User, on_delete=models.PROTECT)
+    title = models.CharField(max_length=100)
+    description = models.TextField(null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
+    
     def __str__(self) -> str:
         return self.title

@@ -119,18 +119,22 @@
         		<div class="projects_fillter">
 					<ul class="filter list">
 						<li class="active" data-filter="*"><a href="#">All Categories</a></li>
-                        {% for cat in categories %}
-						<li data-filter=".{{ cat.name }}"><a href="#">{{ cat.name }}</a></li>
+
+				
+
+                        {% for category in Categories %}
+						<li data-filter=".{{ category.name }}"><a href="#">{{ category.name }}</a></li>
                         {% endfor %}
+
 					</ul>
 				</div>
 				<div class="projects_inner row">
-                    {% for project in portfolios %}
-					<div class="col-lg-4 col-sm-6 {% for cat in project.category.all %} {{ cat }} {% endfor %}">
+                    {% for portfolio in portfolios %}
+					<div class="col-lg-4 col-sm-6 brand {{ portfolio.category.name }}">
 						<div class="projects_item">
-							<img class="img-fluid" src="{{ project.image.url }}" alt="">
+							<img class="img-fluid" src="{{ portfolio.image.url }}" alt="">
 							<div class="projects_text">
-								<a href="{{ project.get_absolute_url }}"><h4>{{ project.title }}</h4></a>
+								<a href="{{ portfolio.get_absolute_url }}"><h4>{{ portfolio.title }}</h4></a>
 							</div>
 						</div>
 					</div>

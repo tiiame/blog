@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BaseModel, Profile, Skill, About, Category, Post, Service, Portfolio
+from .models import BaseModel, Profile, Skill, About, Category, Post, Service, Portfolio,Blog
 # Register your models here.
 
 # admin.site.register(BaseModel)
@@ -56,3 +56,8 @@ class Portfolio(admin.ModelAdmin):
     list_display_links = ('link','category')
     search_fields = ('title','category',)
  
+@admin.register(Blog)
+class Blog(admin.ModelAdmin):
+    list_display = ('author', 'title', 'description', 'created_at','category',)
+    list_display_links = ('title',)
+    search_fields = ('title',)
